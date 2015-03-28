@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">UniSchool</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="registercompany">REGISTER NEW ACCOUNT</string>
+    <string name="existing_acc">SIGN IN EXISTING ACCOUNT</string>
+    <string name="title_activity_viewpager">Viewpager</string>
+    <string name="sign">SIGN IN</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="REGISTER">REGISTER</string>
+    <string name="title_activity_news">News</string>
+
+</resources>
