@@ -23,10 +23,10 @@
         </activity>
         <provider
             android:name="com.example.codetribe1.unischool.providers.ContentProvider.NewsContentProvider"
-            android:authorities="com.example.codetribe1.unischool.providers"/>
+            android:authorities="com.example.codetribe1.unischool.providers.ContentProviderUtil"/>
         <provider
             android:name="com.example.codetribe1.unischool.providers.ContentProvider.StudentsContentProvider"
-            android:authorities="com.example.codetribe1.unischool.providers"/>
+            android:authorities="com.example.codetribe1.unischool.providers.ContentProviderUtil"/>
 
     </application>
 

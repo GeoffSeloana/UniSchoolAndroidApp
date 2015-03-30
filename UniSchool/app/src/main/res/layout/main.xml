@@ -117,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/reg_username"
+                    android:id="@+id/reg_firstname"
                     android:layout_marginTop="30dp"
                     android:hint="first name"
                     android:inputType="text"
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content" />
                 <EditText
                     android:id="@+id/reg_middlename"
-                    android:layout_below="@+id/reg_username"
+                    android:layout_below="@+id/reg_firstname"
                     android:layout_marginTop="10dp"
                     android:hint="middle name"
                     android:inputType="textPassword"
@@ -140,19 +140,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <EditText
-                    android:id="@+id/reg_school"
+                    android:id="@+id/reg_email"
                     android:layout_below="@+id/reg_lastname"
                     android:layout_marginTop="10dp"
-                    android:hint="school"
+                    android:hint="email"
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <EditText
-                    android:id="@+id/reg_grade"
-                    android:layout_below="@+id/reg_school"
+                    android:id="@+id/reg_schoolID"
+                    android:layout_below="@+id/reg_email"
+                    android:layout_marginTop="10dp"
+                    android:hint="school"
+                    android:inputType="number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <EditText
+                    android:id="@+id/reg_gradeID"
+                    android:layout_below="@+id/reg_schoolID"
                     android:layout_marginTop="10dp"
                     android:hint="grade"
-                    android:inputType="textPassword"
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 

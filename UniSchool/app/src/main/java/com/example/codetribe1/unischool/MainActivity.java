@@ -9,20 +9,57 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+
+import com.example.codetribe1.unischool.dto.StudentDTO;
+import com.example.codetribe1.unischool.providers.ContentProviderUtil.StudentsContentProviderUtil;
 
 
 public class MainActivity extends ActionBarActivity {
     Button signin ;
     Button register;
     Button existing;
+    EditText txtFirstName;
+    EditText txtMiddleName;
+    EditText txtLastName;
+    EditText txtEmail;
+    EditText txtschoolID;
+    EditText txtgradeID;
+    Button registerStudent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //getting all the veiws needed to register student
+        txtFirstName = (EditText) findViewById(R.id.reg_firstname);
+        txtMiddleName = (EditText) findViewById(R.id.reg_middlename);
+        txtLastName = (EditText) findViewById(R.id.reg_lastname);
+        txtEmail = (EditText) findViewById(R.id.reg_email);
+        txtschoolID = (EditText) findViewById(R.id.reg_schoolID);
+        txtgradeID = (EditText) findViewById(R.id.reg_gradeID);
+        registerStudent = (Button) findViewById(R.id.reg_BTN);
 
+        //----------register button onclick-------------------
+        registerStudent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String firstName = txtFirstName.getText().toString();
+                String middleName = txtMiddleName.getText().toString();
+                String lastName = txtLastName.getText().toString();
+                String email = txtEmail.getText().toString();
+                int  school_ID = Integer.parseInt(txtschoolID.getText().toString());
+                int grade_ID = Integer.parseInt(txtgradeID.getText().toString());
+
+                //instantial object
+                StudentDTO student = new StudentDTO(null,firstName,middleName,lastName,email,school_ID,grade_ID);
+                //add this to CP
+                StudentsContentProviderUtil.addStudent(getContentResolver(), student);
+
+            }
+        });
 
         //---------Logo Animation--------------Logo Animation-----
         final View logo= findViewById(R.id.logo);
