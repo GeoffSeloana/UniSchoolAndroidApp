@@ -1,0 +1,66 @@
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/beautiful" />
+
+    //----------------main-----------
+    <RelativeLayout
+        android:layout_margin="20dp"
+        android:layout_below="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/D_titleTextView"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/bigger_title_size"
+            tools:text="This is the title"/>
+        <TextView
+            android:layout_below="@+id/D_titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/D_subtitleTextView"
+            android:textColor="@color/description_color"
+            android:textSize="@dimen/subtitle_size"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            tools:text="I am the subtitle"/>
+        <TextView
+            android:layout_below="@+id/D_subtitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/D_date"
+            android:textColor="@color/description_color"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            tools:text="12/06/2015"/>
+
+        <TextView
+            android:layout_below="@+id/D_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/D_descriptionTextView"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/description_size"
+            tools:text="And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||And this is the description ||"/>
+
+        </RelativeLayout>
+</RelativeLayout>
+
+</ScrollView>

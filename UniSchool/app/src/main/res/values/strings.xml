@@ -11,5 +11,6 @@
     <string name="forgot_password">Forgot Password</string>
     <string name="REGISTER">REGISTER</string>
     <string name="title_activity_news">News</string>
+    <string name="title_activity_detailed_news">DetailedNewsActivity</string>
 
 </resources>

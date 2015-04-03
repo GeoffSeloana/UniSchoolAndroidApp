@@ -16,16 +16,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".NewsActivity"
             android:label="@string/title_activity_news" >
         </activity>
+
         <provider
             android:name=".providers.StudentsContentProvider"
-            android:authorities="com.example.codetribe1.unischool.providers"/>
+            android:authorities="com.example.codetribe1.unischool.providers" />
 
 
+        <activity
+            android:name=".DetailedNewsActivity"
+            android:label="@string/title_activity_detailed_news" >
+        </activity>
     </application>
 
 </manifest>
