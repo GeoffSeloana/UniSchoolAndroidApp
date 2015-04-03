@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -70,6 +72,9 @@ public class NewsAdaptor extends BaseAdapter {
             h.imageView.setVisibility(View.GONE);
         }
 
+
+        animateView(convertView);
+
         return convertView;
     }
     class holder{
@@ -77,5 +82,13 @@ public class NewsAdaptor extends BaseAdapter {
         TextView title;
         TextView subtitle;
         TextView description;
+    }
+
+    public void animateView(final View view) {
+        Animation a = AnimationUtils.loadAnimation(mCtx, R.anim.grow_fade_in_center);
+        a.setDuration(500);
+        if (view == null)
+            return;
+        view.startAnimation(a);
     }
 }

@@ -32,7 +32,7 @@ public class NewsActivity extends ActionBarActivity {
 
         List<NewsDTO> news = new ArrayList<>();
 
-        for(int i=0;i<1000;i++){
+        for(int i=0;i<5000;i++){
             NewsDTO DTO = new NewsDTO(i,"String Title "+i,"String subTitle "+i,"School Trip to the far North of South Where everyone is going to enjoy. School Trip to the far North of South Where everyone is going to enjoy School Trip to the far North of South Where everyone is going to enjoy. School Trip to the far North of South Where everyone is going to enjoy",0.23,0.23,1);
             news.add(DTO);
         }
