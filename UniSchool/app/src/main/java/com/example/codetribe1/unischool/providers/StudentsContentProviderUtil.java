@@ -1,4 +1,4 @@
-package com.example.codetribe1.unischool.providers.ContentProviderUtil;
+package com.example.codetribe1.unischool.providers;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.example.codetribe1.unischool.dto.StudentDTO;
-import com.example.codetribe1.unischool.providers.Tables.StudentTable;
 
 /**
  * Created by CodeTRibe1 on 2015-03-29.
@@ -17,7 +16,7 @@ public class StudentsContentProviderUtil {
     private static final String TAG = StudentsContentProviderUtil.class.getSimpleName();
 
 
-    public static final String STUDENTS_AUTHORITY = "com.example.codetribe1.unischool.providers.ContentProviderUtil";
+    public static final String STUDENTS_AUTHORITY = "com.example.codetribe1.unischool.providers";
     public static final String STUDENTS_BASE_PATH = "students";
     public static final Uri STUDENTS_CONTENT_URI = Uri.parse("content://"+STUDENTS_AUTHORITY+"/"+STUDENTS_BASE_PATH);
 

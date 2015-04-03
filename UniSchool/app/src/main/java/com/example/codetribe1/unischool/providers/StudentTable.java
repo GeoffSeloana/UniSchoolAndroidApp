@@ -1,4 +1,4 @@
-package com.example.codetribe1.unischool.providers.Tables;
+package com.example.codetribe1.unischool.providers;
 
 import android.database.sqlite.SQLiteDatabase;
 
@@ -15,7 +15,7 @@ public class StudentTable {
     public static final String COLUMN_EMAIL="email";
 
     public static final String COLUMN_STUDENT_ID = "studentID";//global
-    public static final String COLUMN_CP_STUDENT_ID = "studentID";//local
+    public static final String COLUMN_CP_STUDENT_ID = "_ID";//local
 
     public static final String DEFAULT_SORT_ORDER = "_ID Desc";
 
@@ -26,6 +26,7 @@ public class StudentTable {
             +" ( "+COLUMN_CP_STUDENT_ID+" integer primary key autoincrement,"
             +COLUMN_STUDENT_ID+ " text, "
             +COLUMN_FIRST_NAME+ " text not null, "
+            +COLUMN_MIDDLE_NAME+ " text not null, "
             +COLUMN_LAST_NAME+ " text not null, "
             +COLUMN_GRADE_ID+ " text not null, "
             +COLUMN_SCHOOL_ID+ " text not null, "

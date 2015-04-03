@@ -1,4 +1,4 @@
-package com.example.codetribe1.unischool.providers.Tables;
+package com.example.codetribe1.unischool.providers;
 
 import android.database.sqlite.SQLiteDatabase;
 

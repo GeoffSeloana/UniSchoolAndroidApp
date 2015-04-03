@@ -22,11 +22,9 @@
             android:label="@string/title_activity_news" >
         </activity>
         <provider
-            android:name="com.example.codetribe1.unischool.providers.ContentProvider.NewsContentProvider"
-            android:authorities="com.example.codetribe1.unischool.providers.ContentProviderUtil"/>
-        <provider
-            android:name="com.example.codetribe1.unischool.providers.ContentProvider.StudentsContentProvider"
-            android:authorities="com.example.codetribe1.unischool.providers.ContentProviderUtil"/>
+            android:name=".providers.StudentsContentProvider"
+            android:authorities="com.example.codetribe1.unischool.providers"/>
+
 
     </application>
 

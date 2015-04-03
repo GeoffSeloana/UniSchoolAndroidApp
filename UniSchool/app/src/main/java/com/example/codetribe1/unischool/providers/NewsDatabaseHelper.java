@@ -1,10 +1,8 @@
-package com.example.codetribe1.unischool.providers.DatabaseHelper;
+package com.example.codetribe1.unischool.providers;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import com.example.codetribe1.unischool.providers.Tables.NewsTable;
 
 /**
  * Created by CodeTRibe1 on 2015-03-28.

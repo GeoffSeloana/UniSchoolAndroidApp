@@ -1,4 +1,4 @@
-package com.example.codetribe1.unischool.providers.ContentProvider;
+package com.example.codetribe1.unischool.providers;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -9,10 +9,6 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
-
-import com.example.codetribe1.unischool.providers.ContentProviderUtil.StudentsContentProviderUtil;
-import com.example.codetribe1.unischool.providers.DatabaseHelper.StudentsDatabaseHelper;
-import com.example.codetribe1.unischool.providers.Tables.StudentTable;
 
 /**
  * Created by CodeTRibe1 on 2015-03-29.

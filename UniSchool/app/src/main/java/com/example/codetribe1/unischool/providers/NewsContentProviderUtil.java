@@ -1,4 +1,4 @@
-package com.example.codetribe1.unischool.providers.ContentProviderUtil;
+package com.example.codetribe1.unischool.providers;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.example.codetribe1.unischool.dto.NewsDTO;
-import com.example.codetribe1.unischool.providers.Tables.NewsTable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ import java.util.List;
 public class NewsContentProviderUtil {
     private static final String TAG = NewsContentProviderUtil.class.getSimpleName();
 
-    public static final String NEWS_AUTHORITY = "com.example.codetribe1.unischool.providers.ContentProviderUtil";
+    public static final String NEWS_AUTHORITY = "com.example.codetribe1.unischool.providers";
     public static final String NEWS_BASE_PATH = "news";
     public static final Uri NEWS_CONTENT_URI = Uri.parse("content://"+NEWS_AUTHORITY+"/"+NEWS_BASE_PATH);
 

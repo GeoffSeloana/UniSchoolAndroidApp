@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import com.example.codetribe1.unischool.dto.StudentDTO;
-import com.example.codetribe1.unischool.providers.ContentProviderUtil.StudentsContentProviderUtil;
+import com.example.codetribe1.unischool.providers.StudentsContentProviderUtil;
 
 
 public class MainActivity extends ActionBarActivity {

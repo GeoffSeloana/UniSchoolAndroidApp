@@ -128,7 +128,7 @@
                     android:layout_below="@+id/reg_firstname"
                     android:layout_marginTop="10dp"
                     android:hint="middle name"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <EditText
@@ -136,7 +136,7 @@
                     android:layout_below="@+id/reg_middlename"
                     android:layout_marginTop="10dp"
                     android:hint="last name"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <EditText
@@ -144,7 +144,7 @@
                     android:layout_below="@+id/reg_lastname"
                     android:layout_marginTop="10dp"
                     android:hint="email"
-                    android:inputType="textPassword"
+                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
                 <EditText
