@@ -7,4 +7,5 @@
     <dimen name="small_padding">8dp</dimen>
     <dimen name="subtitle_size">20sp</dimen>
     <dimen name="description_size">12sp</dimen>
+    <dimen name="list_divider_height">0dp</dimen>
 </resources>

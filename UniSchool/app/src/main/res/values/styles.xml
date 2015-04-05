@@ -10,6 +10,15 @@
         <item name="colorAccent">@color/accentColor</item>
 
     </style>
+    <style name="Title3TextStyleRed" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/translucent_red</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="TextStyleSmall" parent="@android:style/TextAppearance.Small">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
     <style name="Title2TextStyleBlue" parent="@android:style/TextAppearance.Medium">
         <item name="android:textColor">@color/navy_blue</item>
         <item name="android:textStyle">bold</item>

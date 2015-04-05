@@ -1,5 +1,9 @@
 package com.example.codetribe1.unischool;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -10,10 +14,17 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.codetribe1.unischool.dto.StudentDTO;
 import com.example.codetribe1.unischool.providers.StudentsContentProviderUtil;
+import com.example.codetribe1.unischool.util.Util;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -23,10 +34,17 @@ public class MainActivity extends ActionBarActivity {
     EditText txtFirstName;
     EditText txtMiddleName;
     EditText txtLastName;
-    EditText txtEmail;
-    EditText txtschoolID;
-    EditText txtgradeID;
+    TextView txtEmail;
+    TextView txtschoolID;
+    TextView txtgradeID;
+    TextView txtEMAIL;
     Button registerStudent;
+    Context ctx;
+    Activity activity;
+    ImageView banner;
+    String emailreal;
+    String school;
+    String grade;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +55,15 @@ public class MainActivity extends ActionBarActivity {
         txtFirstName = (EditText) findViewById(R.id.reg_firstname);
         txtMiddleName = (EditText) findViewById(R.id.reg_middlename);
         txtLastName = (EditText) findViewById(R.id.reg_lastname);
-        txtEmail = (EditText) findViewById(R.id.reg_email);
-        txtschoolID = (EditText) findViewById(R.id.reg_schoolID);
-        txtgradeID = (EditText) findViewById(R.id.reg_gradeID);
+        txtEmail = (TextView) findViewById(R.id.SI_txtEmail);
+        txtschoolID = (TextView) findViewById(R.id.reg_schoolID);
+        txtgradeID = (TextView) findViewById(R.id.reg_gradeID);
         registerStudent = (Button) findViewById(R.id.reg_BTN);
+        txtEMAIL = (TextView) findViewById(R.id.SI_txtEmail);
+        activity = this;
+        ctx = getApplicationContext();
+        getEmail();
+        banner = (ImageView)findViewById(R.id.image);
 
         //----------register button onclick-------------------
         registerStudent.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +87,7 @@ public class MainActivity extends ActionBarActivity {
         //---------Logo Animation--------------Logo Animation-----
         final View logo= findViewById(R.id.logo);
         Animation fadeIn = new AlphaAnimation(0f,10f);
-        fadeIn.setDuration(10000);
+        fadeIn.setDuration(5000);
         fadeIn.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
@@ -129,6 +152,99 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        //--------select email onclick listener---------------------
+        txtEMAIL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Util.flashOnce(txtEMAIL, 100, new Util.UtilAnimationListener() {
+                    @Override
+                    public void onAnimationEnded() {
+                        Util.showPopupBasicWithHeroImage(ctx, activity, tarList,
+                                banner, ctx.getString(R.string.select_email),
+                                new Util.UtilPopupListener() {
+                                    @Override
+                                    public void onItemSelected(int index) {
+                                        //selected
+                                        emailreal = tarList.get(index);
+                                        txtEMAIL.setText(emailreal);
+                                    }
+                                });
+                    }
+                });
+
+            }
+        });
+        //----------select school onclick listener----------------------
+
+        final List<String> schoolList = new ArrayList<>();
+        schoolList.add("Global Wisdom International High School");
+        schoolList.add("Little Bells E.M High School");
+        schoolList.add("Loyola Public High School");
+        schoolList.add("Vukani Mawethu High School");
+        schoolList.add("Nellmapius Secondary High School");
+
+
+        txtschoolID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Util.flashOnce(txtschoolID, 100, new Util.UtilAnimationListener() {
+                    @Override
+                    public void onAnimationEnded() {
+                        Util.showPopupBasicWithHeroImage(ctx, activity, schoolList,
+                                banner, ctx.getString(R.string.select_school),
+                                new Util.UtilPopupListener() {
+                                    @Override
+                                    public void onItemSelected(int index) {
+                                        //selected
+                                        school = schoolList.get(index);
+                                        txtschoolID.setText(school);
+                                    }
+                                });
+                    }
+                });
+
+            }
+        });
+        //--------------------select grade onclick listener-------------------
+        final List<String>gradeList= new ArrayList<>();
+        gradeList.add("One");
+        gradeList.add("Two");
+        gradeList.add("Three");
+        gradeList.add("Four");
+        gradeList.add("Five");
+        gradeList.add("Six");
+        gradeList.add("Seven");
+        gradeList.add("Eight");
+        gradeList.add("Nine");
+        gradeList.add("Ten");
+        gradeList.add("Eleven");
+        gradeList.add("Twelve");
+
+        txtgradeID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Util.flashOnce(txtgradeID, 100, new Util.UtilAnimationListener() {
+                    @Override
+                    public void onAnimationEnded() {
+                        Util.showPopupBasicWithHeroImage(ctx, activity, gradeList,
+                                banner, ctx.getString(R.string.select_grade),
+                                new Util.UtilPopupListener() {
+                                    @Override
+                                    public void onItemSelected(int index) {
+                                        //selected
+                                        grade = gradeList.get(index);
+                                        txtgradeID.setText(grade);
+                                    }
+                                });
+                    }
+                });
+
+            }
+        });
+
     }
 
 
@@ -153,4 +269,24 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void getEmail() {
+        AccountManager am = AccountManager.get(getApplicationContext());
+        Account[] accts = am.getAccounts();
+        if (accts.length == 0) {
+            Toast.makeText(getApplicationContext(), "No Accounts found. Please create one and try again ", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
+        if (accts != null) {
+            tarList.add("Please select account");
+            for (int i = 0; i < accts.length; i++) {
+                tarList.add(accts[i].name);
+            }
+
+
+        }
+
+    }
+    ArrayList<String> tarList = new ArrayList<String>();
 }
