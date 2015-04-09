@@ -28,7 +28,7 @@ import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
-    Button signin ;
+    Button signin;
     Button register;
     Button existing;
     EditText txtFirstName;
@@ -45,6 +45,9 @@ public class MainActivity extends ActionBarActivity {
     String emailreal;
     String school;
     String grade;
+    TextView login_username;
+    TextView txtpassword1;
+    TextView txtpassword2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +63,13 @@ public class MainActivity extends ActionBarActivity {
         txtgradeID = (TextView) findViewById(R.id.reg_gradeID);
         registerStudent = (Button) findViewById(R.id.reg_BTN);
         txtEMAIL = (TextView) findViewById(R.id.SI_txtEmail);
+        login_username = (TextView) findViewById(R.id.login_username);
+        txtpassword1 = (TextView) findViewById(R.id.REG_password);
+        txtpassword2 = (TextView) findViewById(R.id.REG_Conf_password);
         activity = this;
         ctx = getApplicationContext();
         getEmail();
-        banner = (ImageView)findViewById(R.id.image);
+        banner = (ImageView) findViewById(R.id.image);
 
         //----------register button onclick-------------------
         registerStudent.setOnClickListener(new View.OnClickListener() {
@@ -73,11 +79,13 @@ public class MainActivity extends ActionBarActivity {
                 String middleName = txtMiddleName.getText().toString();
                 String lastName = txtLastName.getText().toString();
                 String email = txtEmail.getText().toString();
-                int  school_ID = Integer.parseInt(txtschoolID.getText().toString());
-                int grade_ID = Integer.parseInt(txtgradeID.getText().toString());
+                String school = txtschoolID.getText().toString();
+                String grade = txtgradeID.getText().toString();
+                String passwordOne = txtpassword1.getText().toString();
+                String passwordTwo = txtpassword2.getText().toString();
 
                 //instantial object
-                StudentDTO student = new StudentDTO(null,firstName,middleName,lastName,email,school_ID,grade_ID);
+                StudentDTO student = new StudentDTO(null,firstName,middleName,lastName,passwordOne,school,grade,email);
                 //add this to CP
                 StudentsContentProviderUtil.addStudent(getContentResolver(), student);
 
@@ -85,8 +93,8 @@ public class MainActivity extends ActionBarActivity {
         });
 
         //---------Logo Animation--------------Logo Animation-----
-        final View logo= findViewById(R.id.logo);
-        Animation fadeIn = new AlphaAnimation(0f,10f);
+        final View logo = findViewById(R.id.logo);
+        Animation fadeIn = new AlphaAnimation(0f, 10f);
         fadeIn.setDuration(5000);
         fadeIn.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -108,7 +116,7 @@ public class MainActivity extends ActionBarActivity {
         logo.startAnimation(fadeIn);
         logo.setVisibility(View.VISIBLE);
         //--------***------***-----***-------***------***-------
-        Button btnSignIn = (Button)findViewById(R.id.REG_btnExisting);
+        Button btnSignIn = (Button) findViewById(R.id.REG_btnExisting);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,7 +156,7 @@ public class MainActivity extends ActionBarActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),NewsActivity.class));
+                startActivity(new Intent(getApplicationContext(), NewsActivity.class));
             }
         });
 
@@ -168,6 +176,29 @@ public class MainActivity extends ActionBarActivity {
                                         //selected
                                         emailreal = tarList.get(index);
                                         txtEMAIL.setText(emailreal);
+                                    }
+                                });
+                    }
+                });
+
+            }
+        });
+        //----------select email onclick listener-------------------------
+        login_username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Util.flashOnce(login_username, 100, new Util.UtilAnimationListener() {
+                    @Override
+                    public void onAnimationEnded() {
+                        Util.showPopupBasicWithHeroImage(ctx, activity, tarList,
+                                banner, ctx.getString(R.string.select_email),
+                                new Util.UtilPopupListener() {
+                                    @Override
+                                    public void onItemSelected(int index) {
+                                        //selected
+                                        emailreal = tarList.get(index);
+                                        login_username.setText(emailreal);
                                     }
                                 });
                     }
@@ -208,7 +239,7 @@ public class MainActivity extends ActionBarActivity {
             }
         });
         //--------------------select grade onclick listener-------------------
-        final List<String>gradeList= new ArrayList<>();
+        final List<String> gradeList = new ArrayList<>();
         gradeList.add("One");
         gradeList.add("Two");
         gradeList.add("Three");
@@ -288,5 +319,6 @@ public class MainActivity extends ActionBarActivity {
         }
 
     }
+
     ArrayList<String> tarList = new ArrayList<String>();
 }

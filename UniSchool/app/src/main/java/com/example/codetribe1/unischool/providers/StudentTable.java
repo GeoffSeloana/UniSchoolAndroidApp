@@ -10,6 +10,7 @@ public class StudentTable {
     public static final String COLUMN_FIRST_NAME="firstname";
     public static final String COLUMN_MIDDLE_NAME="middlename";
     public static final String COLUMN_LAST_NAME="lastname";
+    public static final String COLUMN_PASSWORD="password";
     public static final String COLUMN_GRADE_ID="gradeID";
     public static final String COLUMN_SCHOOL_ID="schoolID";
     public static final String COLUMN_EMAIL="email";
@@ -20,7 +21,7 @@ public class StudentTable {
     public static final String DEFAULT_SORT_ORDER = "_ID Desc";
 
     public static final String[] DEFAULT_STUDENTS_PROJECTIONS={COLUMN_FIRST_NAME,COLUMN_MIDDLE_NAME,
-            COLUMN_LAST_NAME,COLUMN_GRADE_ID,COLUMN_SCHOOL_ID,COLUMN_EMAIL,COLUMN_STUDENT_ID};
+            COLUMN_LAST_NAME,COLUMN_PASSWORD,COLUMN_GRADE_ID,COLUMN_SCHOOL_ID,COLUMN_EMAIL,COLUMN_STUDENT_ID};
 
     private static final String CREATE_TABLE_QUERY = " CREATE TABLE "+STUDENTS_TABLE_NAME+" "
             +" ( "+COLUMN_CP_STUDENT_ID+" integer primary key autoincrement,"
@@ -28,6 +29,7 @@ public class StudentTable {
             +COLUMN_FIRST_NAME+ " text not null, "
             +COLUMN_MIDDLE_NAME+ " text not null, "
             +COLUMN_LAST_NAME+ " text not null, "
+            +COLUMN_PASSWORD+ " text not null, "
             +COLUMN_GRADE_ID+ " text not null, "
             +COLUMN_SCHOOL_ID+ " text not null, "
             +COLUMN_EMAIL+ " text)";

@@ -10,28 +10,22 @@ public class StudentDTO implements Serializable {
     private String firstName;
     private String middleName;
     private String lastName;
-    private int schoolID;
-    private int gradeID;
+    private String password;
+    private String schoolID;
+    private String gradeID;
     private String email;
 
     public StudentDTO() {
     }
 
-    public StudentDTO(Integer studentID, String firstName, String middleName, String lastName,String email, int schoolID, int gradeID) {
+    public StudentDTO(Integer studentID, String firstName, String middleName, String lastName, String password, String schoolID, String gradeID, String email) {
         this.studentID = studentID;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
+        this.password = password;
         this.schoolID = schoolID;
         this.gradeID = gradeID;
-        this.email = email;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -67,19 +61,35 @@ public class StudentDTO implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getSchoolID() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getSchoolID() {
         return schoolID;
     }
 
-    public void setSchoolID(int schoolID) {
+    public void setSchoolID(String schoolID) {
         this.schoolID = schoolID;
     }
 
-    public int getGradeID() {
+    public String getGradeID() {
         return gradeID;
     }
 
-    public void setGradeID(int gradeID) {
+    public void setGradeID(String gradeID) {
         this.gradeID = gradeID;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

@@ -61,13 +61,14 @@ public class StudentsContentProviderUtil {
         String firstName=cursor.getString(cursor.getColumnIndex(StudentTable.COLUMN_FIRST_NAME));
         String middleName=cursor.getString(cursor.getColumnIndex(StudentTable.COLUMN_MIDDLE_NAME));
         String lastName=cursor.getString(cursor.getColumnIndex(StudentTable.COLUMN_LAST_NAME));
-        int gradeID =cursor.getInt(cursor.getColumnIndex(StudentTable.COLUMN_GRADE_ID));
-        int schoolID =cursor.getInt(cursor.getColumnIndex(StudentTable.COLUMN_SCHOOL_ID));
+        String password =cursor.getString(cursor.getColumnIndex(StudentTable.COLUMN_PASSWORD));
+        String grade =cursor.getString(cursor.getColumnIndex(StudentTable.COLUMN_GRADE_ID));
+        String school =cursor.getString(cursor.getColumnIndex(StudentTable.COLUMN_SCHOOL_ID));
         String email=cursor.getString(cursor.getColumnIndex(StudentTable.COLUMN_EMAIL));
         String globalStudentId= cursor.getString(cursor.getColumnIndex(StudentTable.COLUMN_STUDENT_ID));
 
 
-        StudentDTO student = new StudentDTO(0,firstName,middleName,lastName,email,schoolID,gradeID);
+        StudentDTO student = new StudentDTO(0,firstName,middleName,lastName,password,school,grade,email);
         return  student;
     }
     //-----------get values to insert------------------------------------
@@ -78,6 +79,7 @@ public class StudentsContentProviderUtil {
         valuesToInsert.put(StudentTable.COLUMN_FIRST_NAME,studentDataObject.getFirstName());
         valuesToInsert.put(StudentTable.COLUMN_MIDDLE_NAME,studentDataObject.getMiddleName());
         valuesToInsert.put(StudentTable.COLUMN_LAST_NAME,studentDataObject.getLastName());
+        valuesToInsert.put(StudentTable.COLUMN_PASSWORD,studentDataObject.getPassword());
         valuesToInsert.put(StudentTable.COLUMN_EMAIL,studentDataObject.getEmail());
         valuesToInsert.put(StudentTable.COLUMN_GRADE_ID,studentDataObject.getGradeID());
         valuesToInsert.put(StudentTable.COLUMN_SCHOOL_ID,studentDataObject.getSchoolID());
