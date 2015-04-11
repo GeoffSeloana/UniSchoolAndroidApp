@@ -15,5 +15,6 @@
     <string name="select_email">Please select email address</string>
     <string name="select_school">Please select school</string>
     <string name="select_grade">Please select grade</string>
+    <string name="crash_toast">gf</string>
 
 </resources>

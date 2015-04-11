@@ -49,6 +49,7 @@ public class MainActivity extends ActionBarActivity {
     TextView txtpassword1;
     TextView txtpassword2;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

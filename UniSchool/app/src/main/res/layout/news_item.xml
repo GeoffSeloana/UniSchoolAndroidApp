@@ -34,11 +34,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/titleTextView"
-                        android:paddingTop="@dimen/big_padding"
+                        android:paddingTop="5dp"
                         android:paddingLeft="@dimen/big_padding"
                         android:paddingRight="@dimen/big_padding"
-                        android:textColor="@android:color/black"
-                        android:textSize="@dimen/bigger_title_size"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:fontFamily="sans-serif-light"
                         tools:text="This is the title"/>
 
             </RelativeLayout>
@@ -49,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2">
             <RelativeLayout
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
@@ -57,6 +59,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    android:textAppearance="?android:attr/textAppearance"
+                    android:fontFamily="sans-serif-light"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
                     android:paddingRight="3dp"
                     android:text="2015/04/08" />
             </RelativeLayout>
@@ -87,21 +93,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/subtitleTextView"
-                        android:textColor="@color/description_color"
                         android:paddingLeft="@dimen/big_padding"
                         android:paddingRight="@dimen/big_padding"
-                        android:textSize="@dimen/subtitle_size"
-                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:paddingTop="1dp"
+                        android:textAppearance="?android:attr/textAppearance"
+                        android:fontFamily="sans-serif-light"
+                        android:textSize="14sp"
+                        android:lines="1"
                         tools:text="I am the subtitle"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/descriptionTextView"
-                        android:textColor="@color/description_color"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:fontFamily="sans-serif-light"
+                        android:lines="3"
                         android:paddingBottom="@dimen/big_padding"
                         android:paddingRight="@dimen/big_padding"
                         android:paddingLeft="@dimen/big_padding"
                         android:paddingTop="@dimen/small_padding"
+                        android:textColor="@color/description_color"
                         android:textSize="@dimen/description_size"
                         tools:text="And this is the description"/>
                 </LinearLayout>

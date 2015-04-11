@@ -10,9 +10,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.codetribe1.unischool.adaptors.NewsAdaptor;
 import com.example.codetribe1.unischool.dto.NewsDTO;
+import com.example.codetribe1.unischool.dto.transfer.ResponseDTO;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +34,9 @@ public class NewsActivity extends ActionBarActivity {
     ListView newslistView;
     Context ctx;
     NewsAdaptor newsAdaptor;
+    //Url address
+    String feedUrl = "http://10.50.75.94:8080/usp/StudentServlet?JSON={requestType:2,schoolID:4}";
+    List<NewsDTO> news = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +45,12 @@ public class NewsActivity extends ActionBarActivity {
 
         newslistView = (ListView) findViewById(R.id.newslistView);
 
-        List<NewsDTO> news = new ArrayList<>();
 
-        for(int i=0;i<5000;i++){
-            NewsDTO DTO = new NewsDTO(i,"String Title "+i,"String subTitle "+i,"School Trip to the far North of South Where everyone is going to enjoy. School Trip to the far North of South Where everyone is going to enjoy School Trip to the far North of South Where everyone is going to enjoy. School Trip to the far North of South Where everyone is going to enjoy",0.23,0.23,1);
-            news.add(DTO);
-        }
+
+//        for(int i=0;i<5000;i++){
+//            NewsDTO DTO = new NewsDTO(i,"String Title "+i,"String subTitle "+i,"School Trip to the far North of South Where everyone is going to enjoy. School Trip to the far North of South Where everyone is going to enjoy School Trip to the far North of South Where everyone is going to enjoy. School Trip to the far North of South Where everyone is going to enjoy",0.23,0.23,1);
+//            news.add(DTO);
+//        }
 
         if(news ==null){
             news = new ArrayList<>();
@@ -44,6 +59,49 @@ public class NewsActivity extends ActionBarActivity {
         ctx = getApplicationContext();
         newsAdaptor = new NewsAdaptor(ctx,news);
         newslistView.setAdapter(newsAdaptor);
+
+        //-----------------------------Volley to get a list of News-----------------------------------------
+
+        RequestQueue rq = Volley.newRequestQueue(this);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, feedUrl, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+
+                    JSONArray NewsJSONArray = response.getJSONArray("newsList");
+                    ResponseDTO responseDTO = new ResponseDTO();
+
+                    for (int i=0; i<NewsJSONArray.length();i++){
+                        //NewsTitleArray.add(NewsJSONArray.getJSONObject(i).getString("title"));
+                        NewsDTO N = new NewsDTO();
+                        N.setTitle(NewsJSONArray.getJSONObject(i).getString("title"));
+                        N.setSubTitle(NewsJSONArray.getJSONObject(i).getString("subTitle"));
+                        N.setDetails(NewsJSONArray.getJSONObject(i).getString("details"));
+                        N.setLatitude(Double.parseDouble(NewsJSONArray.getJSONObject(i).getString("latitude")));
+                        N.setLongitude(Double.parseDouble(NewsJSONArray.getJSONObject(i).getString("longitude")));
+                        N.setSchoolID(Integer.parseInt(NewsJSONArray.getJSONObject(i).getString("schoolID")));
+                        news.add(N);
+                    }
+
+
+
+
+                } catch (JSONException e) {
+
+                }
+                newsAdaptor.notifyDataSetChanged();
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(ctx, volleyError.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        rq.add(jsonObjectRequest);
+        //----------------------------------------------------------------------------------------------------
+
+
 
         newslistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
