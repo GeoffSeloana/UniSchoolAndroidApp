@@ -12,6 +12,7 @@ public class NewsTable {
     public static final String COLUMN_DETAILS = "details";
     public static final String COLUMN_LONGITUDE = "longitude";
     public static final String COLUMN_LATITUDE = "latitude";
+    public static final String COLUMN_DATEPUBLISHED = "datepublished";
     public static final String COLUMN_SCHOOLID = "schoolID";
     // global ID
     public static final String COLUMN_NEWS_ID = "newsID";
@@ -21,7 +22,7 @@ public class NewsTable {
     public static final String DEFAULT_SORT_ORDER = "_ID Desc";
 
     public static final String[] DEFAULT_NEWS_PROJECTIONS={COLUMN_TITLE,COLUMN_SUBTITLE,COLUMN_DETAILS,COLUMN_LONGITUDE,
-     COLUMN_LATITUDE,COLUMN_SCHOOLID,COLUMN_NEWS_ID};
+     COLUMN_LATITUDE,COLUMN_DATEPUBLISHED,COLUMN_SCHOOLID,COLUMN_NEWS_ID};
 
     private static final String CREATE_TABLE_QUERY = " CREATE TABLE "+NEWS_TABLE_NAME+" "
             +" ( "+COLUMN_CP_NEWS_ID+" integer primary key autoincrement,"
@@ -31,6 +32,7 @@ public class NewsTable {
             +COLUMN_DETAILS+ " text not null, "
             +COLUMN_LONGITUDE+ " double not null, "
             +COLUMN_LATITUDE+ " double not null, "
+            +COLUMN_DATEPUBLISHED+ " text, "
             +COLUMN_SCHOOLID+ " integer not null default 0)";
 
     private static final String DROP_TABLE_QUERY = "DROP TABLE IF EXISTS "+NEWS_TABLE_NAME;

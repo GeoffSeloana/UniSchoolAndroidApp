@@ -65,10 +65,11 @@ public class NewsContentProviderUtil {
         double longitude=cursor.getDouble(cursor.getColumnIndex(NewsTable.COLUMN_LONGITUDE));
         double latitude=cursor.getDouble(cursor.getColumnIndex(NewsTable.COLUMN_LATITUDE));
         int schoolID = cursor.getInt(cursor.getColumnIndex(NewsTable.COLUMN_SCHOOLID));
+        String date = cursor.getString(cursor.getColumnIndex(NewsTable.COLUMN_DATEPUBLISHED));
 
 
 
-        NewsDTO news = new NewsDTO(0,title,subTitle,details,longitude,latitude,schoolID);
+        NewsDTO news = new NewsDTO(0,title,subTitle,details,longitude,latitude,schoolID,date);
         return  news;
     }
     //-----------get values to insert------------------------------------

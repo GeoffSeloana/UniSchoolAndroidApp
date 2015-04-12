@@ -14,11 +14,12 @@ public class NewsDTO implements Serializable {
     private Double longitude;
     private Double latitude;
     private int schoolID;
+    private String datePublished;
 
     public NewsDTO() {
     }
 
-    public NewsDTO(Integer newsID, String title, String subTitle, String details, Double longitude, Double latitude, int schoolID) {
+    public NewsDTO(Integer newsID, String title, String subTitle, String details, Double longitude, Double latitude, int schoolID,String datePublished) {
         this.newsID = newsID;
         this.title = title;
         this.subTitle = subTitle;
@@ -26,6 +27,15 @@ public class NewsDTO implements Serializable {
         this.longitude = longitude;
         this.latitude = latitude;
         this.schoolID = schoolID;
+        this.datePublished = datePublished;
+    }
+
+    public String getDatePublished() {
+        return datePublished;
+    }
+
+    public void setDatePublished(String datePublished) {
+        this.datePublished = datePublished;
     }
 
     public Integer getNewsID() {

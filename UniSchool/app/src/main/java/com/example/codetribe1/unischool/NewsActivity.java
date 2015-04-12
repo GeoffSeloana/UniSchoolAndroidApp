@@ -35,7 +35,7 @@ public class NewsActivity extends ActionBarActivity {
     Context ctx;
     NewsAdaptor newsAdaptor;
     //Url address
-    String feedUrl = "http://10.50.75.94:8080/usp/StudentServlet?JSON={requestType:2,schoolID:4}";
+    String feedUrl = "http://146.64.85.25:8080/usp/StudentServlet?JSON={requestType:2,schoolID:14}";
     List<NewsDTO> news = new ArrayList<>();
 
     @Override
@@ -60,7 +60,7 @@ public class NewsActivity extends ActionBarActivity {
         newsAdaptor = new NewsAdaptor(ctx,news);
         newslistView.setAdapter(newsAdaptor);
 
-        //-----------------------------Volley to get a list of News-----------------------------------------
+        //-----------------------------Volley to get a list of News objects-----------------------------------------
 
         RequestQueue rq = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, feedUrl, null, new Response.Listener<JSONObject>() {
@@ -80,6 +80,7 @@ public class NewsActivity extends ActionBarActivity {
                         N.setLatitude(Double.parseDouble(NewsJSONArray.getJSONObject(i).getString("latitude")));
                         N.setLongitude(Double.parseDouble(NewsJSONArray.getJSONObject(i).getString("longitude")));
                         N.setSchoolID(Integer.parseInt(NewsJSONArray.getJSONObject(i).getString("schoolID")));
+                        N.setDatePublished(NewsJSONArray.getJSONObject(i).getString("datePubliched"));
                         news.add(N);
                     }
 
@@ -102,7 +103,7 @@ public class NewsActivity extends ActionBarActivity {
         //----------------------------------------------------------------------------------------------------
 
 
-
+        //--------------------handling the onclick of a button------------------------------------------------
         newslistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -123,7 +124,7 @@ public class NewsActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
-
+        //------------------------------------------------------------------------------------------------
 
 
 

@@ -57,6 +57,7 @@ public class NewsAdaptor extends BaseAdapter {
             h.subtitle = (TextView) convertView.findViewById(R.id.subtitleTextView);
             h.description = (TextView) convertView.findViewById(R.id.descriptionTextView);
             h.imageView = (ImageView) convertView.findViewById(R.id.image);
+            h.date = (TextView) convertView.findViewById(R.id.date);
             convertView.setTag(h);
         }else{
             h = (holder) convertView.getTag();
@@ -64,10 +65,12 @@ public class NewsAdaptor extends BaseAdapter {
         String title = newsList.get(position).getTitle();
         String subtitle = newsList.get(position).getSubTitle();
         String description = newsList.get(position).getDetails();
+        String date = newsList.get(position).getDatePublished();
 
         h.title.setText(title);
         h.subtitle.setText(subtitle);
         h.description.setText(description);
+        h.date.setText(date+"");
         if(position%2!=0){
             h.imageView.setVisibility(View.GONE);
         }
@@ -82,6 +85,8 @@ public class NewsAdaptor extends BaseAdapter {
         TextView title;
         TextView subtitle;
         TextView description;
+        TextView date;
+
     }
 
     public void animateView(final View view) {
