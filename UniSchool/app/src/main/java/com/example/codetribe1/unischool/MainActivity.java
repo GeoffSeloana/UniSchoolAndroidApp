@@ -45,9 +45,11 @@ public class MainActivity extends ActionBarActivity {
     String emailreal;
     String school;
     String grade;
+    String email="";
     TextView login_username;
     TextView txtpassword1;
     TextView txtpassword2;
+    EditText login_password;
 
 
     @Override
@@ -67,33 +69,87 @@ public class MainActivity extends ActionBarActivity {
         login_username = (TextView) findViewById(R.id.login_username);
         txtpassword1 = (TextView) findViewById(R.id.REG_password);
         txtpassword2 = (TextView) findViewById(R.id.REG_Conf_password);
+        login_password = (EditText) findViewById(R.id.login_password);
         activity = this;
         ctx = getApplicationContext();
         getEmail();
         banner = (ImageView) findViewById(R.id.image);
 
-        //----------register button onclick-------------------
+
+
+        //--------------------------------register button onclick------------------------------------------------------
         registerStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String firstName = txtFirstName.getText().toString();
-                String middleName = txtMiddleName.getText().toString();
-                String lastName = txtLastName.getText().toString();
-                String email = txtEmail.getText().toString();
-                String school = txtschoolID.getText().toString();
-                String grade = txtgradeID.getText().toString();
-                String passwordOne = txtpassword1.getText().toString();
-                String passwordTwo = txtpassword2.getText().toString();
 
-                //instantial object
-                StudentDTO student = new StudentDTO(null,firstName,middleName,lastName,passwordOne,school,grade,email);
-                //add this to CP
-                StudentsContentProviderUtil.addStudent(getContentResolver(), student);
+                //-----------------------------------------------registration for validation---------------------------------------
+                if(txtFirstName.getText().toString().length()==0){
+                    txtFirstName.setError("first name required");
+                }else{txtFirstName.setError(null);}
 
+                if(txtLastName.getText().toString().length()==0){
+                    txtLastName.setError("last name required");
+                }else{txtLastName.setError(null);}
+
+                if(txtEMAIL.getText().toString().equals("Select Email") ){
+                    txtEMAIL.setError("email required!");
+                }else{txtEMAIL.setError(null);}
+
+                if(txtpassword1.getText().toString().equals(txtpassword2.getText().toString()) ){
+                    if(txtpassword1.getText().toString().equals("") && txtpassword2.getText().toString().equals("")){
+                        txtpassword1.setError("Insert password");
+                        txtpassword2.setError("Insert password");
+                    }else{
+                        txtpassword1.setError(null);
+                        txtpassword2.setError(null);
+                    }
+
+                }else{txtpassword1.setError("passwords do not match!");
+                    txtpassword2.setError("passwords do not match!");}
+
+                if(txtschoolID.getText().toString().equals("Select School") ){
+                    txtschoolID.setError("school required!");
+                }else{txtschoolID.setError(null);}
+
+                if(txtgradeID.getText().toString().equals("Select Grade") ){
+                    txtgradeID.setError("grade required!");
+                }else{txtgradeID.setError(null);}
+
+
+                //-----------if all the fields are entered then this will execute-----------------------------------
+                if(txtFirstName.getError() == null  &&
+                        txtLastName.getError()==null &&
+                        txtEMAIL.getError()==null &&
+                        txtpassword1.getError()==null &&
+                        txtpassword2.getError()==null &&
+                        txtschoolID.getError()==null &&
+                        txtgradeID.getError()==null){
+
+                    Toast.makeText(getApplicationContext(),"Now go to the next page",Toast.LENGTH_LONG).show();
+                    String firstName = txtFirstName.getText().toString();
+                    String middleName = txtMiddleName.getText().toString();
+                    String lastName = txtLastName.getText().toString();
+                    email = txtEmail.getText().toString();
+                    String school = txtschoolID.getText().toString();
+                    String grade = txtgradeID.getText().toString();
+                    String passwordOne = txtpassword1.getText().toString();
+
+                    //instantial object
+                    StudentDTO student = new StudentDTO(null,firstName,middleName,lastName,passwordOne,school,grade,email);
+                    //add this to CP
+                    StudentsContentProviderUtil.addStudent(getContentResolver(), student);
+
+                    RelativeLayout mainLayout = (RelativeLayout) findViewById(R.id.register_form);
+                    RelativeLayout login_form = (RelativeLayout) findViewById(R.id.login_form);
+
+                    mainLayout.setVisibility(View.GONE);
+                    login_form.setVisibility(View.VISIBLE);
+
+                }
             }
         });
 
-        //---------Logo Animation--------------Logo Animation-----
+        //---------Logo Animation--------------Logo Animation------------------
         final View logo = findViewById(R.id.logo);
         Animation fadeIn = new AlphaAnimation(0f, 10f);
         fadeIn.setDuration(5000);
@@ -153,15 +209,31 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        //--------------------------------------------login screen signin button onclick-------------------------------------
+
         signin = (Button) findViewById(R.id.login_BTN);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), NewsActivity.class));
+
+
+                //-----------------------------------------------login validation---------------------------------------
+                if(login_username.getText().toString().equals("Select Email") ){
+                    login_username.setError("email required!");
+                }else{
+                    login_username.setError(null);
+                }
+                if( login_password.getText().toString().length() == 0 ){
+                    login_password.setError( "password required!" );
+                }
+
+                if(login_username.getError() !="email required!" && login_password.getError() !="password required!"){
+                    startActivity(new Intent(getApplicationContext(), NewsActivity.class));
+                }
             }
         });
 
-        //--------select email onclick listener---------------------
+        //-----------------------------------select email onclick listener------------------------------------
         txtEMAIL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -184,7 +256,7 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
-        //----------select email onclick listener-------------------------
+        //----------------------------------select email onclick listener--------------------------------------
         login_username.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,7 +279,7 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
-        //----------select school onclick listener----------------------
+        //-------------------------------------select school onclick listener-----------------------------------
 
         final List<String> schoolList = new ArrayList<>();
         schoolList.add("Global Wisdom International High School");
@@ -239,7 +311,7 @@ public class MainActivity extends ActionBarActivity {
 
             }
         });
-        //--------------------select grade onclick listener-------------------
+        //----------------------------------------select grade onclick listener-------------------------------------
         final List<String> gradeList = new ArrayList<>();
         gradeList.add("One");
         gradeList.add("Two");

@@ -35,7 +35,7 @@ public class NewsActivity extends ActionBarActivity {
     Context ctx;
     NewsAdaptor newsAdaptor;
     //Url address
-    String feedUrl = "http://10.100.1.105:8080/usp/StudentServlet?JSON={requestType:2,schoolID:14}";
+    String feedUrl = "http://10.50.75.34:8080/usp/StudentServlet?JSON={requestType:2,schoolID:14}";
     List<NewsDTO> news = new ArrayList<>();
 
     @Override
