@@ -35,7 +35,7 @@ public class NewsActivity extends ActionBarActivity {
     Context ctx;
     NewsAdaptor newsAdaptor;
     //Url address
-    String feedUrl = "http://10.50.75.34:8080/usp/StudentServlet?JSON={requestType:2,schoolID:14}";
+    String feedUrl = "http://geoff.coolpage.biz/all_news.php";
     List<NewsDTO> news = new ArrayList<>();
 
     @Override
@@ -68,7 +68,7 @@ public class NewsActivity extends ActionBarActivity {
             public void onResponse(JSONObject response) {
                 try {
 
-                    JSONArray NewsJSONArray = response.getJSONArray("newsList");
+                    JSONArray NewsJSONArray = response.getJSONArray("News");
                     ResponseDTO responseDTO = new ResponseDTO();
 
                     for (int i=0; i<NewsJSONArray.length();i++){
