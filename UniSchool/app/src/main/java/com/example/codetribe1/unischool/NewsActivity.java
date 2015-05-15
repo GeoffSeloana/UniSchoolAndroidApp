@@ -3,22 +3,21 @@ package com.example.codetribe1.unischool;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.text.format.Time;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.codetribe1.unischool.adaptors.NewsAdaptor;
+import com.example.codetribe1.unischool.app.MyApplication;
 import com.example.codetribe1.unischool.dto.NewsDTO;
 import com.example.codetribe1.unischool.dto.transfer.ResponseDTO;
 
@@ -30,40 +29,67 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class NewsActivity extends ActionBarActivity {
-    ListView newslistView;
+public class NewsActivity extends ActionBarActivity implements SwipeRefreshLayout.OnRefreshListener {
+
     Context ctx;
-    NewsAdaptor newsAdaptor;
-    //Url address
-    String feedUrl = "http://geoff.coolpage.biz/all_news.php";
-    List<NewsDTO> news = new ArrayList<>();
+    private String TAG = NewsActivity.class.getSimpleName();
+    private String url = "http://geoff.coolpage.biz/all_news.php";
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private ListView listView;
+    private NewsAdaptor adapter;
+    private List<NewsDTO> news;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
 
-        newslistView = (ListView) findViewById(R.id.newslistView);
+        listView = (ListView) findViewById(R.id.newslistView);
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
-
-
-//        for(int i=0;i<5000;i++){
-//            NewsDTO DTO = new NewsDTO(i,"String Title "+i,"String subTitle "+i,"School Trip to the far North of South Where everyone is going to enjoy. School Trip to the far North of South Where everyone is going to enjoy School Trip to the far North of South Where everyone is going to enjoy. School Trip to the far North of South Where everyone is going to enjoy",0.23,0.23,1);
-//            news.add(DTO);
-//        }
-
-        if(news ==null){
-            news = new ArrayList<>();
-        }
-
+        news = new ArrayList<>();
         ctx = getApplicationContext();
-        newsAdaptor = new NewsAdaptor(ctx,news);
-        newslistView.setAdapter(newsAdaptor);
+        adapter = new NewsAdaptor(ctx,news);
+        listView.setAdapter(adapter);
 
-        //-----------------------------Volley to get a list of News objects-----------------------------------------
+        swipeRefreshLayout.setOnRefreshListener(this);
 
-        RequestQueue rq = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, feedUrl, null, new Response.Listener<JSONObject>() {
+        /**
+         * Showing Swipe Refresh animation on activity create
+         * As animation won't start on onCreate, post runnable is used
+         */
+        swipeRefreshLayout.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        swipeRefreshLayout.setRefreshing(true);
+
+                                        fetchNews();
+                                    }
+                                }
+        );
+
+    }
+
+    /**
+     * This method is called when swipe refresh is pulled down
+     */
+    @Override
+    public void onRefresh() {
+        fetchNews();
+    }
+
+    /**
+     * Fetching movies json by making http call
+     */
+    private void fetchNews() {
+
+        // showing refresh animation before making http call
+        swipeRefreshLayout.setRefreshing(true);
+
+
+        // Volley's json array request object
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
@@ -88,26 +114,35 @@ public class NewsActivity extends ActionBarActivity {
 
 
                 } catch (JSONException e) {
-
+                    Log.e(TAG, "JSON Parsing error: " + e.getMessage());
                 }
-                newsAdaptor.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
+
+                // stopping swipe refresh
+                swipeRefreshLayout.setRefreshing(false);
 
             }
         }, new Response.ErrorListener() {
             @Override
-            public void onErrorResponse(VolleyError volleyError) {
-                Toast.makeText(ctx, volleyError.toString(), Toast.LENGTH_SHORT).show();
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Server Error: " + error.getMessage());
+
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+
+                // stopping swipe refresh
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
-        rq.add(jsonObjectRequest);
+
+        // Adding request to request queue
+        MyApplication.getInstance().addToRequestQueue(jsonObjectRequest);
         //----------------------------------------------------------------------------------------------------
 
-
         //--------------------handling the onclick of a button------------------------------------------------
-        newslistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                NewsDTO item = (NewsDTO) newsAdaptor.getItem(position);
+                NewsDTO item = (NewsDTO) adapter.getItem(position);
 
                 Intent intent = new Intent(getApplicationContext(),DetailedNewsActivity.class);
                 //-------get the current date-----------
@@ -125,31 +160,8 @@ public class NewsActivity extends ActionBarActivity {
             }
         });
         //------------------------------------------------------------------------------------------------
-
-
-
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_news, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

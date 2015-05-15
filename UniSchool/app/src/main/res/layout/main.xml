@@ -22,11 +22,11 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:scaleType="center"
-            android:src="@drawable/applogo" />
+            android:src="@drawable/applogo"
+            android:visibility="invisible" />
 
 
 
@@ -53,36 +53,36 @@
 
 
             <RelativeLayout
-                android:padding="5dp"
                 android:id="@+id/form"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
 
                 <TextView
                     android:id="@+id/login_username"
-                    android:layout_marginTop="30dp"
-                    android:text="Select Email"
                     style="@style/Title3TextStyleRed"
-                    android:layout_marginLeft="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="30dp"
+                    android:text="Select Email"/>
                 <EditText
                     android:id="@+id/login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/login_username"
                     android:layout_marginTop="10dp"
                     android:hint="Password"
-                    android:inputType="textPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:inputType="textPassword" />
                 <TextView
-                    android:padding="5dp"
-                    android:gravity="end"
                     android:id="@+id/login_forgot"
-                    android:textColor="@color/absa_red"
-                    android:layout_below="@+id/login_password"
-                    android:text="Forgot Password"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/login_password"
+                    android:gravity="end"
+                    android:padding="5dp"
+                    android:text="Forgot Password"
+                    android:textColor="@color/absa_red" />
 
 
 
@@ -93,8 +93,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/form"
-                android:layout_marginTop="20dp"
                 android:layout_margin="1dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/sign" />
 
 
@@ -116,76 +116,76 @@
 
             <RelativeLayout
                 android:id="@+id/form_two"
-                android:padding="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
                 <EditText
                     android:id="@+id/reg_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:hint="first name"
-                    android:inputType="text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:inputType="text" />
                 <EditText
                     android:id="@+id/reg_middlename"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/reg_firstname"
                     android:layout_marginTop="10dp"
                     android:hint="middle name"
-                    android:inputType="text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:inputType="text" />
                 <EditText
                     android:id="@+id/reg_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/reg_middlename"
                     android:layout_marginTop="10dp"
                     android:hint="last name"
-                    android:inputType="text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:inputType="text" />
                 <TextView
                     android:id="@+id/SI_txtEmail"
-                    android:layout_marginTop="12dp"
-                    android:text="Select Email"
                     style="@style/Title3TextStyleRed"
-                    android:layout_marginLeft="5dp"
-                    android:layout_below="@+id/reg_lastname"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/reg_lastname"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Select Email"/>
                 <EditText
                     android:id="@+id/REG_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/SI_txtEmail"
                     android:layout_marginTop="10dp"
                     android:hint="Password"
-                    android:inputType="textPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:inputType="textPassword" />
                 <EditText
                     android:id="@+id/REG_Conf_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_below="@+id/REG_password"
                     android:layout_marginTop="10dp"
                     android:hint="Confirm Password"
-                    android:inputType="textPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:inputType="textPassword" />
                 <TextView
                     android:id="@+id/reg_schoolID"
-                    android:layout_marginTop="12dp"
-                    android:text="Select School"
-                    android:layout_below="@+id/REG_Conf_password"
                     style="@style/Title3TextStyleRed"
-                    android:layout_marginLeft="5dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/REG_Conf_password"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Select School"/>
                 <TextView
                     android:id="@+id/reg_gradeID"
-                    android:layout_marginTop="12dp"
-                    android:text="Select Grade"
-                    android:layout_below="@+id/reg_schoolID"
                     style="@style/Title3TextStyleRed"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginBottom="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/reg_schoolID"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Select Grade"/>
 
 
 
@@ -195,10 +195,10 @@
             <Button
                 android:id="@+id/reg_BTN"
                 style="@style/ButtonRed"
-                android:layout_margin="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/form_two"
+                android:layout_margin="1dp"
                 android:layout_marginTop="20dp"
 
                 android:text="@string/REGISTER" />
@@ -221,9 +221,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/image"
+            android:background="@drawable/layer_card_background_login"
             android:padding="1dp"
-            android:visibility="visible"
-            android:background="@drawable/layer_card_background_login">
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/REG_welcome"
@@ -252,7 +252,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/REG_instruction"
                 android:layout_marginTop="40dp"
-                android:drawableLeft="@drawable/ic_launcher"
+                android:drawableLeft="@drawable/jump"
                 android:text="@string/existing_acc" />
 
             <Button
